@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/movies-finder-ts-version/static/css/main.dfa7c79d.css",
-    "main.js": "/movies-finder-ts-version/static/js/main.b36ca853.js",
+    "main.js": "/movies-finder-ts-version/static/js/main.0b16ef47.js",
     "static/js/423.3bef9bb4.chunk.js": "/movies-finder-ts-version/static/js/423.3bef9bb4.chunk.js",
     "static/js/278.dcfcf835.chunk.js": "/movies-finder-ts-version/static/js/278.dcfcf835.chunk.js",
     "static/js/168.a56c5728.chunk.js": "/movies-finder-ts-version/static/js/168.a56c5728.chunk.js",
-    "static/js/458.e53a317a.chunk.js": "/movies-finder-ts-version/static/js/458.e53a317a.chunk.js",
-    "static/js/561.13c7bcef.chunk.js": "/movies-finder-ts-version/static/js/561.13c7bcef.chunk.js",
+    "static/js/458.4422c278.chunk.js": "/movies-finder-ts-version/static/js/458.4422c278.chunk.js",
+    "static/js/561.cf25e792.chunk.js": "/movies-finder-ts-version/static/js/561.cf25e792.chunk.js",
     "static/js/622.0e48a313.chunk.js": "/movies-finder-ts-version/static/js/622.0e48a313.chunk.js",
     "static/js/130.d35ab92f.chunk.js": "/movies-finder-ts-version/static/js/130.d35ab92f.chunk.js",
     "static/js/14.91a103ec.chunk.js": "/movies-finder-ts-version/static/js/14.91a103ec.chunk.js",
@@ -17,12 +17,12 @@
     "static/js/617.5354b1d5.chunk.js": "/movies-finder-ts-version/static/js/617.5354b1d5.chunk.js",
     "index.html": "/movies-finder-ts-version/index.html",
     "main.dfa7c79d.css.map": "/movies-finder-ts-version/static/css/main.dfa7c79d.css.map",
-    "main.b36ca853.js.map": "/movies-finder-ts-version/static/js/main.b36ca853.js.map",
+    "main.0b16ef47.js.map": "/movies-finder-ts-version/static/js/main.0b16ef47.js.map",
     "423.3bef9bb4.chunk.js.map": "/movies-finder-ts-version/static/js/423.3bef9bb4.chunk.js.map",
     "278.dcfcf835.chunk.js.map": "/movies-finder-ts-version/static/js/278.dcfcf835.chunk.js.map",
     "168.a56c5728.chunk.js.map": "/movies-finder-ts-version/static/js/168.a56c5728.chunk.js.map",
-    "458.e53a317a.chunk.js.map": "/movies-finder-ts-version/static/js/458.e53a317a.chunk.js.map",
-    "561.13c7bcef.chunk.js.map": "/movies-finder-ts-version/static/js/561.13c7bcef.chunk.js.map",
+    "458.4422c278.chunk.js.map": "/movies-finder-ts-version/static/js/458.4422c278.chunk.js.map",
+    "561.cf25e792.chunk.js.map": "/movies-finder-ts-version/static/js/561.cf25e792.chunk.js.map",
     "622.0e48a313.chunk.js.map": "/movies-finder-ts-version/static/js/622.0e48a313.chunk.js.map",
     "130.d35ab92f.chunk.js.map": "/movies-finder-ts-version/static/js/130.d35ab92f.chunk.js.map",
     "14.91a103ec.chunk.js.map": "/movies-finder-ts-version/static/js/14.91a103ec.chunk.js.map",
@@ -34,6 +34,6 @@
   },
   "entrypoints": [
     "static/css/main.dfa7c79d.css",
-    "static/js/main.b36ca853.js"
+    "static/js/main.0b16ef47.js"
   ]
 }
