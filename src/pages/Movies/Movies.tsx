@@ -2,25 +2,26 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { MoviesList } from 'components/MoviesList/MoviesList';
-import { SearchBox } from 'components/SearchBox/SearchBox';
-import { SearchMoviesAPI } from 'components/services/API';
-import { Finish } from 'components/Finish/Finish';
+import { MoviesList } from '../../components/MoviesList/MoviesList';
+import { SearchBox } from '../../components/SearchBox/SearchBox';
+import { SearchMoviesAPI } from '../../components/services/API';
+import { Finish } from '../../components/Finish/Finish';
+import { IGenre, IMovie } from '../../types';
 
 const MoviesAPI = new SearchMoviesAPI();
 
-export function Movies() {
-  const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
-  const [isRendered, setIsRendered] = useState(false);
+export const Movies = () => {
+  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [genres, setGenres] = useState<IGenre[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
+  const [isRendered, setIsRendered] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const filmTitle = searchQuery.get('name') ?? '';
   const from = 'movies';
 
   useEffect(() => {
-    MoviesAPI.searchGenres().then(response => setGenres(response.data.genres));
+    MoviesAPI.searchGenres().then(response => setGenres(response!.data.genres));
   }, []);
 
   useEffect(() => {
@@ -30,15 +31,15 @@ export function Movies() {
     }
 
     MoviesAPI.searchMovies(page, filmTitle).then(response => {
-      setTotalPages(response.data.total_pages);
-      if (response.data.results.length > 0) {
+      setTotalPages(response!.data.total_pages);
+      if (response!.data.results.length > 0) {
         toast.success(
-          `Hooray! We found ${response.data.total_results} movies`,
+          `Hooray! We found ${response!.data.total_results} movies`,
           {
             autoClose: 3000,
           }
         );
-        setMovies(prevMovies => [...prevMovies, ...response.data.results]);
+        setMovies(prevMovies => [...prevMovies, ...response!.data.results]);
       } else {
         toast.warn('Nothing found for your request', {
           autoClose: 3000,
@@ -47,12 +48,14 @@ export function Movies() {
     });
   }, [page, filmTitle, isRendered]);
 
-  const submitHandler = query => {
-    const filmName =
-      query.trim() !== ''
-        ? { name: query }
-        : {} &&
-          toast.error('Sorry, search field if empty :(', { autoClose: 3000 });
+  const submitHandler = (query: string): void => {
+    let filmName: { name?: string };
+
+    if (query.trim() !== '') filmName = { name: query };
+    else {
+      filmName = {};
+      toast.error('Sorry, search field if empty :(', { autoClose: 3000 });
+    }
 
     if (query !== filmName.name) {
       setMovies([]);
@@ -86,4 +89,4 @@ export function Movies() {
       {page === totalPages && <Finish />}
     </div>
   );
-}
+};

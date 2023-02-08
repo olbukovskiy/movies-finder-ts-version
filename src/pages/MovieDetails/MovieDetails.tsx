@@ -5,10 +5,10 @@ import {
   movieDetailsGenres,
   picturePathPlace,
   SearchMoviesAPI,
-} from 'components/services/API';
+} from '../../components/services/API';
 
-import { Loader } from 'components/Loader/Loader';
-import { BackLink } from 'components/BackLink/BackLink';
+import { Loader } from '../../components/Loader/Loader';
+import { BackLink } from '../../components/BackLink/BackLink';
 
 import {
   MovieDetailsContainer,
@@ -23,20 +23,31 @@ import {
   MovieDetailsWrapper,
   MovieWrapper,
 } from './MovieDetails.styled';
+import { IGenre } from '../../types';
+
+interface IMovieParams {
+  title: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+  overview: string;
+  genres: IGenre[];
+}
 
 const MoviesAPI = new SearchMoviesAPI();
 
-export function MovieDetails() {
-  const [movieDetails, setMovieDetails] = useState(null);
-  const { movieId } = useParams();
+export const MovieDetails: React.FunctionComponent = () => {
+  const [movieDetails, setMovieDetails] = useState<IMovieParams | null>(null);
+  const { movieId } = useParams<{ movieId: string }>();
   const location = useLocation();
-
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref: string = location.state?.from ?? '/';
 
   useEffect(() => {
-    MoviesAPI.searchMovieDetails(movieId).then(response =>
-      setMovieDetails(response.data)
-    );
+    if (typeof movieId !== 'undefined') {
+      MoviesAPI.searchMovieDetails(movieId).then(response =>
+        setMovieDetails(response!.data)
+      );
+    }
   }, [movieId]);
 
   return (
@@ -104,4 +115,4 @@ export function MovieDetails() {
       )}
     </>
   );
-}
+};

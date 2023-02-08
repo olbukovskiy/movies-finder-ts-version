@@ -12,7 +12,7 @@ import {
 const initialValues = { search: '' };
 
 export const SearchBox: React.FunctionComponent<{
-  onSubmit: (query: string) => string;
+  onSubmit: (query: string) => void;
   value: string;
 }> = ({ onSubmit, value }) => {
   return (

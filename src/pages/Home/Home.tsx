@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react';
 
-import { MoviesList } from 'components/MoviesList/MoviesList';
-import { SearchMoviesAPI } from 'components/services/API';
-import { Finish } from 'components/Finish/Finish';
+import { MoviesList } from '../../components/MoviesList/MoviesList';
+import { SearchMoviesAPI } from '../../components/services/API';
+import { Finish } from '../../components/Finish/Finish';
 import { TrendingHeading } from './Home.styled';
+import { IGenre, IMovie } from '../../types';
 
 const MoviesAPI = new SearchMoviesAPI();
 
-export function Home() {
-  const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
-  const [isRendered, setIsRendered] = useState(false);
+export const Home: React.FunctionComponent = () => {
+  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [genres, setGenres] = useState<IGenre[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<null | number>(null);
+  const [isRendered, setIsRendered] = useState<boolean>(false);
   const from = 'home';
 
   useEffect(() => {
     MoviesAPI.searchGenres().then(response => {
-      setGenres(response.data.genres);
+      setGenres(response!.data.genres);
     });
   }, []);
 
@@ -27,9 +28,9 @@ export function Home() {
       return;
     }
 
-    MoviesAPI.searchTrendingMovies(page).then(response => {
-      setTotalPages(response.data.total_pages);
-      setMovies(prevMovies => [...prevMovies, ...response.data.results]);
+    MoviesAPI.searchTrendingMovies(page.toString()).then(response => {
+      setTotalPages(response!.data.total_pages);
+      setMovies(prevMovies => [...prevMovies, ...response!.data.results]);
     });
   }, [page, isRendered]);
 
@@ -56,4 +57,4 @@ export function Home() {
       {page === totalPages && <Finish />}
     </>
   );
-}
+};

@@ -43,7 +43,7 @@ const SharedLayout = lazy(() =>
   }))
 );
 
-export const App = () => {
+export const App: React.FunctionComponent = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

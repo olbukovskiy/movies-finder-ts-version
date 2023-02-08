@@ -4,7 +4,7 @@ import { IGenre } from '../../types';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const KEY = '9d6e6ee2eca71a277d41288e53d88a97';
 
-export class SearchMoviesAPI<T extends string> {
+export class SearchMoviesAPI<T extends string, U extends number> {
   searchTrendingMovies = async (page: T) => {
     const url = `trending/movie/week?api_key=${KEY}&page=${page}`;
     try {
@@ -15,7 +15,7 @@ export class SearchMoviesAPI<T extends string> {
     }
   };
 
-  searchMovies = async (page: T, searchQuery: T) => {
+  searchMovies = async (page: U, searchQuery: T) => {
     const url = `search/movie?api_key=${KEY}&query=${searchQuery}&page=${page}`;
     try {
       const response = await axios.get(url);
@@ -35,23 +35,27 @@ export class SearchMoviesAPI<T extends string> {
     }
   };
 
-  searchMovieCredits = async (movieId: T) => {
+  searchMovieCredits = async (movieId: T | undefined) => {
     const url = `movie/${movieId}/credits?api_key=${KEY}`;
-    try {
-      const response = await axios.get(url);
-      return response;
-    } catch (error) {
-      console.log(error);
+    if (typeof movieId === 'string') {
+      try {
+        const response = await axios.get(url);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
-  searchMovieReviews = async (movieId: T) => {
+  searchMovieReviews = async (movieId: T | undefined) => {
     const url = `movie/${movieId}/reviews?api_key=${KEY}`;
-    try {
-      const response = await axios.get(url);
-      return response;
-    } catch (error) {
-      console.log(error);
+    if (typeof movieId === 'string') {
+      try {
+        const response = await axios.get(url);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
